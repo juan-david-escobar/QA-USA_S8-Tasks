@@ -1,22 +1,33 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 import time
 
-from selenium.webdriver.common.by import By
-from selenium import webdriver
-
-# Initialize a new instance of the Chrome WebDriver
 driver = webdriver.Chrome()
-
-# Open the specified URL in the browser
-driver.get(" SERVER URL ")
-
-# Pause execution for 2 seconds to allow the page to load fully
+driver.get('https://cnt-a3604b94-3eb8-4c58-95db-3a6c3e88c791.containerhub.tripleten-services.com/')
+current_url = driver.current_url
+driver.maximize_window()
 time.sleep(2)
 
-# Find the button using its XPath and click on it
-driver.find_element(...)...
-
-# Pause execution for 2 seconds to allow you to see the results of the click
+expand_element = driver.find_element(By.CSS_SELECTOR, 'button[class="gm-control-active gm-fullscreen-control"]')
+expand_element.click()
 time.sleep(2)
 
-# Close the browser and end the WebDriver session
+expand_element.click()
+time.sleep(2)
+
+input_element_from = driver.find_element(By.CSS_SELECTOR, 'input#from')
+input_element_from.send_keys('East')
+time.sleep(2)
+
+input_element_to = driver.find_element(By.CSS_SELECTOR, 'input#to')
+input_element_to.send_keys('1300')
+time.sleep(2)
+
+click_element = driver.find_element(By.CSS_SELECTOR, 'button[class="button round"]')
+click_element.click()
+
+print(current_url)
+print(input_element_from.get_attribute('class'))
+print(input_element_to.get_attribute('class'))
+
 driver.quit()
